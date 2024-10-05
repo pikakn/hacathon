@@ -14,10 +14,9 @@ class diet:
         self.exercise = exercise
         self.calorie = calorie
     
-    def add_calorie(self,foodname):
-        self.calorie += foodname.calorie
-    
-    def exercise(self,)
+    def add_calorie(self,calorie):
+        self.calorie += calorie
+
     
     
         
@@ -28,4 +27,10 @@ print("you begin the diet!")
 
 
 apple = diet("りんご",1,0,0,135)
+
+
+diet.add_calorie(you,apple.calorie)
+
+print(you.calorie)
+
 
