@@ -87,7 +87,7 @@ you = diet(you_user.user,1,0,0,0)
 
 
 # 表示
-# session_state でボタンによる入力を保持
+# session_state でボタンによる入力を保持 辞書の形式で格納している
 if "eatlist" not in st.session_state:
     st.session_state.eatlist = []
 st.write("lets eat!")
