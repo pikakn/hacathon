@@ -14,8 +14,11 @@ class diet:
         self.exercise = exercise
         self.calorie = calorie
     
-    def add_calorie(self,calorie):
-        self.calorie += calorie
+    def add_calorie(self,foodname):
+        self.calorie += foodname.calorie
+    
+    def exercise(self,)
+    
     
         
 print("Let's begin with filling your data,name,age,sex,height,weight,and object_gram.")
