@@ -13,6 +13,10 @@ class diet:
         self.food = food
         self.exercise = exercise
         self.calorie = calorie
+    
+    def add_calorie(self,calorie):
+        self.calorie += calorie
+    
         
 print("Let's begin with filling your data,name,age,sex,height,weight,and object_gram.")
 you_user = person(input(),input(),input(),input(),input(),input())
@@ -22,4 +26,3 @@ print("you begin the diet!")
 
 apple = diet("りんご",1,0,0,135)
 
-print(apple.calorie)
