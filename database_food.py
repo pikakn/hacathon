@@ -16,9 +16,11 @@ class diet():
         self.exercise = exercise
         self.calorie = calorie
     
+    # 食べ物を食べる関数　calorieに食べ物のcalorieを代入
     def add_calorie(self,calorie):
         self.calorie += calorie
 
+    # 運動をする関数　時間をトラッキングしweightにuserの体重、exerciseに運動のメッツ(calorie)を代入
     def exerciseGo(self,weight,exercise):
         import time
         weight = float(weight)
