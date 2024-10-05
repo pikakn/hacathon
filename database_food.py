@@ -16,10 +16,22 @@ class diet:
         self.exercise = exercise
         self.calorie = calorie
     
+    # 食べ物を食べる関数　calorieに食べ物のcalorieを代入
     def add_calorie(self,calorie):
         self.calorie += calorie
 
     def exerciseGo(self,weight,exercise,duration):
+    # 運動をする関数　時間をトラッキングしweightにuserの体重、exerciseに運動のメッツ(calorie)を代入
+    def exerciseGo(self,weight,exercise):
+        import time
+        weight = float(weight)
+        exercise = float(exercise)
+        start = time.time()
+        a = input("let's start exercise!")
+        b = input("press enter to end exercise")
+        end = time.time()
+        print(end-start)
+        duration = end-start
         calorie = exercise*weight*duration*1.05
         self.calorie -= calorie
         return calorie 
