@@ -1,12 +1,13 @@
 #運動の入力
 class person:
-    def __init__(self,user,age,sex,height,weight,object_gram):
+    def __init__(self,user,age,sex,height,weight,object_gram,weight_history):
         self.user = user
         self.age = age
         self.sex = sex
         self.height = height
         self.weight = weight
         self.object_gram = object_gram
+        self.weight_history = weight_history
         
 
 class diet:
@@ -41,7 +42,7 @@ weak_sports = diet("スポーツ", 0, 0, 1, 4)
 strong_sports = diet("スポーツ(激しめ)", 0, 0, 1, 8)    
 
 
-you_user = person("John",23,"male",175,63,2)
+you_user = person("John",23,"male",175,63,2,[63])
 you = diet(you_user.user,1,0,0,0) 
 
 import streamlit as st
