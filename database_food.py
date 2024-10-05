@@ -40,15 +40,33 @@ yoga = diet("ヨガ", 0, 0, 1, 2.5)
 trekking = diet("登山", 0, 0, 1, 5)
 weak_sports = diet("スポーツ", 0, 0, 1, 4)
 strong_sports = diet("スポーツ(激しめ)", 0, 0, 1, 8)    
-    
+
+
+rice = diet("ごはん",0,1,0,336)
+bread = diet("食パン1枚",0,1,0,177)
+udon = diet("うどん",0,1,0,311)
+#副菜
+salad = diet("サラダ",0,1,0,81)
+misosoup = diet("味噌汁",0,1,0,33)
+#主菜
+japomlett = diet("卵焼き",0,1,0,142)
+natto = diet("納豆",0,1,0,200)
+friedfish = diet("焼き魚(鮭)",0,1,0,118)
+hamberg = diet("ハンバーグ",0,1,0,437)
+#牛乳・乳製品
+milk = diet("牛乳200ml",0,1,0,134)
+yorgurt = diet("ヨーグルト1パック",0,1,0,62)
+#果物
+orenge = diet("みかん",0,1,0,34)
+apple = diet("りんご",0,1,0,135)    
         
-print("Let's begin with filling your data,name,age,sex,height,weight,and object_gram.")
+
 you_user = person(input(),input(),input(),input(),input(),input())
 you = diet(you_user.user,1,0,0,0) 
-print("you begin the diet!")       
+      
 
 
-apple = diet("りんご",1,0,0,135)
+
 
 
 diet.add_calorie(you,apple.calorie)
