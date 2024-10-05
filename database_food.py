@@ -31,6 +31,16 @@ apple = diet("りんご",1,0,0,135)
 
 diet.add_calorie(you,apple.calorie)
 
+def exerciseGo(you,exercise):
+    import time
+    start = time.time()
+    a = input("let's start exercise!")
+    b = input("press enter to end exercise")
+    end = time.time()
+    print(end-start)
+    duration = end-start
+    exercise.calorie
+
 print(you.calorie)
 
 
