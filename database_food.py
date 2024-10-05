@@ -8,7 +8,7 @@ class person:
         self.object_gram = object_gram
         
 
-class diet():
+class diet:
     def __init__(self,name,usern,food,exercise,calorie):
         self.name = name
         self.usern = usern
@@ -19,18 +19,10 @@ class diet():
     def add_calorie(self,calorie):
         self.calorie += calorie
 
-    def exerciseGo(self,weight,exercise):
-        import time
-        weight = float(weight)
-        exercise = float(exercise)
-        start = time.time()
-        a = input("let's start exercise!")
-        b = input("press enter to end exercise")
-        end = time.time()
-        print(end-start)
-        duration = end-start
+    def exerciseGo(self,weight,exercise,duration):
         calorie = exercise*weight*duration*1.05
         self.calorie -= calorie
+        return calorie 
     
 
 #消費カロリー(kcal) ＝ メッツ × 体重(kg)×運動時間(分) ×1.05
@@ -63,3 +55,5 @@ diet.exerciseGo(you,you_user.weight,cycling.calorie)
 
 print(you.calorie)
 
+   
+    
