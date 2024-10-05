@@ -47,7 +47,7 @@ trekking = diet("登山", 0, 0, 1, 5)
 weak_sports = diet("スポーツ", 0, 0, 1, 4)
 strong_sports = diet("スポーツ(激しめ)", 0, 0, 1, 8)    
 
-
+nothing = diet("",0,1,0,0)
 rice = diet("ごはん",0,1,0,336)
 bread = diet("食パン1枚",0,1,0,177)
 udon = diet("うどん",0,1,0,311)
@@ -67,11 +67,15 @@ orenge = diet("みかん",0,1,0,34)
 apple = diet("りんご",0,1,0,135)  
 
 import streamlit as st
+import numpy as np
+import pandas as pd
+import datetime
+
 st.title("食事　摂取カロリー")
-cerbo_options = ["ご飯","パン","うどん"]
-mainmeal_options = ["卵焼き","納豆","焼き魚(鮭)","ハンバーグ"]
-submeal_options = ["サラダ","味噌汁"]
-sidemenu_options = ["牛乳200ml","ヨーグルト1パック","みかん","りんご"]
+cerbo_options = ["","ご飯","パン","うどん"]
+mainmeal_options = ["","卵焼き","納豆","焼き魚(鮭)","ハンバーグ"]
+submeal_options = ["","サラダ","味噌汁"]
+sidemenu_options = ["","牛乳200ml","ヨーグルト1パック","みかん","りんご"]
 
 cerbo = st.selectbox("主食の種類を選んでください:", cerbo_options)
 mainmeal = st.selectbox("主菜の種類を選んでください", mainmeal_options)
@@ -80,4 +84,26 @@ sidemenu = st.selectbox("サイドメニューの種類を選んでください"
 
 you_user = person("John",23,"male",175,63,3,[65])
 you = diet(you_user.user,1,0,0,0) 
+
+
+# 表示
+# session_state でボタンによる入力を保持
+if "eatlist" not in st.session_state:
+    st.session_state.eatlist = []
+st.write("lets eat!")
+
+
+if st.button("食べる"): #食べたもののリストが累積していく　データベースとの照合はあと
+    datenow = datetime.datetime.now()
+    date = "{}/{}/{}".format(datenow.year,datenow.month,datenow.day)
+    dfnow = pd.DataFrame({
+        "日時":date,
+        "主食":"a",
+        "主菜":"b",
+        "副菜":"c",
+        "カロリー":"d"
+        },index=[0])
+    st.session_state.eatlist.append(dfnow)    
+    df2 = pd.concat(st.session_state.eatlist)
+    st.write(df2) 
 
