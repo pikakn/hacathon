@@ -129,6 +129,7 @@ meal_eatnow = st.session_state.eatlist[-1].iat[0,5]
 st.write(f"{meal_eatnow}カロリーの摂取だ")
 
 diet.add_calorie(you,sum_calorie_menu)
+
 # データyouに情報を更新
 st.write(f"今のカロリーは{you.calorie}だ！")
         
