@@ -125,7 +125,8 @@ sum_calorie_menu = 0
 for i in st.session_state.eatlist:
     sum_calorie_menu += int(i.iat[0,5])
 
-st.write(f"{sum_calorie_menu}カロリーの摂取だ")
+meal_eatnow = st.session_state.eatlist[-1].iat[0,5]
+st.write(f"{meal_eatnow}カロリーの摂取だ")
 
 diet.add_calorie(you,sum_calorie_menu)
 # データyouに情報を更新
