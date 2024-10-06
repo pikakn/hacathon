@@ -25,8 +25,37 @@ class diet:
     def exerciseGo(self,weight,exercise,duration):
         calorie = exercise*weight*duration*1.05
         self.calorie -= calorie
-        return calorie 
-    
+        return calorie
+
+def add_ac_calories(new_weight):
+    import pandas as pd
+    from datetime import datetime
+
+    file_path = 'datafile/home_data.xlsx'
+    df = pd.read_excel(file_path)
+    new_date = datetime.now().strftime('%m.%d').lstrip('0').replace('.0', '/')  # 例: 10.1
+
+    # 新しいデータを追加
+    new_data = {'日付': new_date, "返済実績":-new_weight,'累計カロリー': new_weight}
+
+    # DataFrameに新しい行を追加
+    #df = df._append(new_data, ignore_index=True)
+    df['日付'] = df['日付'].astype(str)
+    if new_date in df['日付'].values:
+        # 同じ日付がある場合は、その行の体重を上書き
+        df.loc[df['日付'] == new_date, '累計カロリー'] = new_weight
+        df.loc[df['日付'] == new_date, '返済実績'] = new_weight
+        print(f"既存の日付 {new_date} の累計カロリーを {new_weight} に上書きしました。")
+    else:
+        # 同じ日付がない場合は、新しい行として追加
+        df = df._append(new_data, ignore_index=True)
+        print(f"新しい日付 {new_date} と累計カロリー {new_weight} を追加しました。")
+
+    # Excelファイルに上書き保存
+    with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer :
+        df.to_excel(writer, sheet_name='Sheet1', index=False)
+
+    print(f"新しい累計カロリーデータが追加され、{file_path}に保存されました。")    
 
 #消費カロリー(kcal) ＝ メッツ × 体重(kg)×運動時間(分) ×1.05
 #運動の消費カロリー
@@ -42,7 +71,7 @@ trekking = diet("登山", 0, 0, 1, 5)
 weak_sports = diet("スポーツ", 0, 0, 1, 4)
 strong_sports = diet("スポーツ(激しめ)", 0, 0, 1, 8)    
 
-
+nothing = diet("",0,1,0,0)
 rice = diet("ごはん",0,1,0,336)
 bread = diet("食パン1枚",0,1,0,177)
 udon = diet("うどん",0,1,0,311)
@@ -62,19 +91,10 @@ orenge = diet("みかん",0,1,0,34)
 apple = diet("りんご",0,1,0,135)    
         
 
-you_user = person(input(),input(),input(),input(),input(),input(),input())
+you_user = person("John",2,"male",173,63,3,1)
 you = diet(you_user.user,1,0,0,0) 
       
 
-
-
-
-
-diet.add_calorie(you,apple.calorie)
-
-diet.exerciseGo(you,you_user.weight,cycling.calorie)
-
-print(you.calorie)
 
    
     
