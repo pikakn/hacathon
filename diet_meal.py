@@ -27,7 +27,33 @@ class diet:
         calorie = exercise*weight*duration*1.05
         self.calorie -= calorie
         return calorie 
-    
+
+file_path = 'datafile/home_data.xlsx'  # 既存のExcelファイルのパス   
+def add_ac_calories(new_weight):
+    df = pd.read_excel(file_path)
+    new_date = datetime.datetime.now().strftime('%m.%d').lstrip('0').replace('.0', '/')  # 例: 10.1
+
+    # 新しいデータを追加
+    new_data = {'日付': new_date, "返済実績": -new_weight,'累計カロリー': new_weight}
+
+    # DataFrameに新しい行を追加
+    #df = df._append(new_data, ignore_index=True)
+    df['日付'] = df['日付'].astype(str)
+    if new_date in df['日付'].values:
+        # 同じ日付がある場合は、その行の体重を上書き
+        df.loc[df['日付'] == new_date, '累計カロリー'] = new_weight
+        df.loc[df['日付'] == new_date, "返済実績"] = -new_weight
+        print(f"既存の日付 {new_date} の累計カロリーを {new_weight} に上書きしました。")
+    else:
+        # 同じ日付がない場合は、新しい行として追加
+        df = df._append(new_data, ignore_index=True)
+        print(f"新しい日付 {new_date} と累計カロリー {new_weight} を追加しました。")
+
+    # Excelファイルに上書き保存
+    with pd.ExcelWriter(file_path, engine='openpyxl', mode='w') as writer :
+        df.to_excel(writer, sheet_name='Sheet1', index=False)
+
+    print(f"新しい累計カロリーデータが追加され、{file_path}に保存されました。")    
 
 #消費カロリー(kcal) ＝ メッツ × 体重(kg)×運動時間(分) ×1.05
 #運動の消費カロリー
@@ -125,6 +151,7 @@ meal_eatnow = st.session_state.eatlist[-1].iat[0,5]
 st.write(f"{meal_eatnow}カロリーの摂取だ")
 
 diet.add_calorie(you,sum_calorie_menu)
+add_ac_calories(you.calorie)
 
 # データyouに情報を更新
 st.write(f"今のカロリーは{you.calorie}だ！")
