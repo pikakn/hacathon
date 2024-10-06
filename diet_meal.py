@@ -1,17 +1,13 @@
 class person:
-    def __init__(self,user,age,sex,height,weight,object_gram,weight_history):
+    def __init__(self,user,age,sex,height,weight,object_gram,week_target):
         self.user = user
         self.age = age
         self.sex = sex
         self.height = height
         self.weight = weight
         self.object_gram = object_gram
-        self.weight_history = weight_history
+        self.week_target = week_target
     
-        # 体重を更新し、履歴に追加するメソッド
-    def update_weight(self, new_weight):
-        self.weight = new_weight
-        self.weight_history.append(new_weight)  # 体重を履歴に保存
         
 
 class diet:
